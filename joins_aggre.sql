@@ -1,8 +1,3 @@
-/*“I designed a bank management system using advanced SQL where customers can own multiple accounts and each account records 
-deposit and withdrawal transactions. I automated balance updates using triggers, optimized performance using indexes, and 
-exposed business data using views and stored procedures.”*/
- 
- 
  -- wqtd the cust_name and total balance
 SELECT c.cust_name, SUM(a.balance) AS total_balance
 FROM customers c
