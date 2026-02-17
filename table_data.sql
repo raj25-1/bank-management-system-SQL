@@ -1,3 +1,4 @@
+-- INSERT BRANCH DETAILS
 INSERT INTO branches (branch_name, city) VALUES
 ('Main Branch - Delhi Central','Delhi'),
 ('Main Branch - South Delhi','Delhi'),
@@ -48,6 +49,7 @@ INSERT INTO branches (branch_name, city) VALUES
 ('Regional Branch - Ghaziabad','Delhi'),
 ('Regional Branch - Faridabad','Delhi');
 
+-- INSERT CUSTOMERS DETAILS
 INSERT INTO customers (cust_name, email, phone, city, created_date) VALUES
 ('Amit Sharma','amit.sharma@gmail.com','900000001','Delhi','2024-01-15'),
 ('Priya Verma','priya.verma@gmail.com','900000002','Mumbai','2024-01-28'),
@@ -105,7 +107,17 @@ INSERT INTO customers (cust_name, email, phone, city, created_date) VALUES
 ('Rohan Dutta','rohan.d@gmail.com','900000050','Kolkata','2025-10-20');
 
 
--- accounts
+
+
+
+-- INSERTING ACCOUNT DETAILS 
+-- “This INSERT-SELECT query generates bulk account data from existing customer records.
+-- Each customer is replicated three times using a derived table, which creates multiple accounts per customer.
+-- Random functions are used to assign branch IDs, account types, and initial balances, simulating real-world banking data. 
+/* This approach ensures referential integrity,
+avoids manual inserts, and allows scalable testing of joins, triggers, and aggregate queries.”*/
+
+       
 INSERT INTO accounts (customer_id, branch_id, account_type, balance, created_date)
 SELECT c.customer_id,
        FLOOR(1 + RAND()*5),
@@ -118,7 +130,14 @@ select*
 from accounts;
 
 
--- transaction
+
+
+/*“These INSERT-SELECT queries generate transaction history for each account. For every account, one deposit 
+and one withdrawal transaction are created. The transaction dates are randomized within a realistic time window 
+based on the customer’s account creation date. This ensures chronological correctness, maintains referential integrity, 
+and provides sufficient data to test triggers, balance updates, and reporting queries at scale.”*/
+
+
 INSERT INTO transactions (account_id, transaction_type, amount, transaction_date)
 SELECT 
     a.account_id,
