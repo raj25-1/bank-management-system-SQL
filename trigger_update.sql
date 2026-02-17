@@ -1,3 +1,7 @@
+/*“This trigger solves the problem of balance inconsistency in banking systems. By automatically updating the account balance whenever a transaction is inserted, 
+it eliminates manual balance calculations and ensures data consistency between the transactions and accounts tables.
+This reduces the risk of errors, simplifies application logic, and guarantees that every financial operation is accurately reflected in real time.”*/
+
 DELIMITER $$
 
 CREATE TRIGGER update_balance
